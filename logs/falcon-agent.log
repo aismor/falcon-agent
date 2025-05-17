@@ -1,0 +1,198 @@
+INFO: 2025/05/16 21:35:15 logger.go:51: Iniciando Falcon Agent na plataforma: linux
+INFO: 2025/05/16 21:35:20 logger.go:51: Coletando métricas do sistema...
+INFO: 2025/05/16 21:35:20 logger.go:51: Sistema Operacional: linux
+INFO: 2025/05/16 21:35:20 logger.go:51: Arquitetura: amd64
+INFO: 2025/05/16 21:35:20 logger.go:51: Número de CPUs: 16
+INFO: 2025/05/16 21:35:25 logger.go:51: Coletando métricas do sistema...
+INFO: 2025/05/16 21:35:25 logger.go:51: Sistema Operacional: linux
+INFO: 2025/05/16 21:35:25 logger.go:51: Arquitetura: amd64
+INFO: 2025/05/16 21:35:25 logger.go:51: Número de CPUs: 16
+INFO: 2025/05/16 21:35:30 logger.go:51: Parando Falcon Agent...
+INFO: 2025/05/16 21:42:23 logger.go:51: Iniciando Falcon Agent na plataforma: linux
+INFO: 2025/05/16 21:42:28 logger.go:51: Coletando métricas do sistema...
+INFO: 2025/05/16 21:42:28 logger.go:51: Sistema Operacional: linux
+INFO: 2025/05/16 21:42:28 logger.go:51: Arquitetura: amd64
+INFO: 2025/05/16 21:42:28 logger.go:51: Número de CPUs: 16
+INFO: 2025/05/16 21:42:33 logger.go:51: Coletando métricas do sistema...
+INFO: 2025/05/16 21:42:33 logger.go:51: Sistema Operacional: linux
+INFO: 2025/05/16 21:42:33 logger.go:51: Arquitetura: amd64
+INFO: 2025/05/16 21:42:33 logger.go:51: Número de CPUs: 16
+INFO: 2025/05/16 21:42:36 logger.go:51: Parando Falcon Agent...
+INFO: 2025/05/16 21:43:25 logger.go:51: Informações da máquina:
+INFO: 2025/05/16 21:43:25 logger.go:51:   Sistema Operacional: linux
+INFO: 2025/05/16 21:43:25 logger.go:51:   Hostname: dev-pc
+INFO: 2025/05/16 21:43:25 logger.go:51:   Processador: AMD Ryzen 7 5700X3D 8-Core Processor
+INFO: 2025/05/16 21:43:25 logger.go:51:   Núcleos: 1
+INFO: 2025/05/16 21:43:25 logger.go:51:   Threads: 16
+INFO: 2025/05/16 21:43:25 logger.go:51:   BIOS: American Megatrends International, LLC. FC (06/08/2023)
+INFO: 2025/05/16 21:43:25 logger.go:51:   Serial Placa-mãe: unknown
+INFO: 2025/05/16 21:43:25 logger.go:51:   Serial da máquina: cbe0a352-a4ad-43f3-bca3-c8f4a13d9bbe
+INFO: 2025/05/16 21:43:25 logger.go:51:   Memórias:
+INFO: 2025/05/16 21:43:25 logger.go:51:   HDs:
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 1 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 1 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 1 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 1 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: unknown, Serial: unknown, Tamanho: 0 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: Asgard AN2 500NVMe-M.2/80, Serial: 01911070186, Tamanho: 465 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:     Modelo: Netac NVMe SSD 1TB, Serial: RN202211171TB793934, Tamanho: 931 GB
+INFO: 2025/05/16 21:43:25 logger.go:51:   Dispositivos USB: 0 (implementação futura)
+INFO: 2025/05/16 21:43:25 logger.go:51: Iniciando Falcon Agent na plataforma: linux
+INFO: 2025/05/16 21:43:30 logger.go:51: Coletando métricas do sistema...
+INFO: 2025/05/16 21:43:30 logger.go:51: Sistema Operacional: linux
+INFO: 2025/05/16 21:43:30 logger.go:51: Arquitetura: amd64
+INFO: 2025/05/16 21:43:30 logger.go:51: Número de CPUs: 16
+INFO: 2025/05/16 21:43:33 logger.go:51: Parando Falcon Agent...
+INFO: 2025/05/16 21:45:06 logger.go:51: Informações da máquina:
+INFO: 2025/05/16 21:45:06 logger.go:51:   Sistema Operacional: linux
+INFO: 2025/05/16 21:45:06 logger.go:51:   Hostname: dev-pc
+INFO: 2025/05/16 21:45:06 logger.go:51:   Processador: AMD Ryzen 7 5700X3D 8-Core Processor
+INFO: 2025/05/16 21:45:06 logger.go:51:   Núcleos: 1
+INFO: 2025/05/16 21:45:06 logger.go:51:   Threads: 16
+INFO: 2025/05/16 21:45:06 logger.go:51:   BIOS: American Megatrends International, LLC. FC (06/08/2023)
+INFO: 2025/05/16 21:45:06 logger.go:51:   Serial Placa-mãe: unknown
+INFO: 2025/05/16 21:45:06 logger.go:51:   Serial da máquina: cbe0a352-a4ad-43f3-bca3-c8f4a13d9bbe
+INFO: 2025/05/16 21:45:06 logger.go:51:   Memórias:
+INFO: 2025/05/16 21:45:06 logger.go:51:   HDs:
+INFO: 2025/05/16 21:45:06 logger.go:51:     Modelo: Asgard AN2 500NVMe-M.2/80, Serial: 01911070186, Tamanho: 465 GB
+INFO: 2025/05/16 21:45:06 logger.go:51:     Modelo: Netac NVMe SSD 1TB, Serial: RN202211171TB793934, Tamanho: 931 GB
+INFO: 2025/05/16 21:45:06 logger.go:51:   Dispositivos USB: 0 (implementação futura)
+INFO: 2025/05/16 21:45:06 logger.go:51: Iniciando Falcon Agent na plataforma: linux
+INFO: 2025/05/16 21:45:11 logger.go:51: Coletando métricas do sistema...
+INFO: 2025/05/16 21:45:11 logger.go:51: Sistema Operacional: linux
+INFO: 2025/05/16 21:45:11 logger.go:51: Arquitetura: amd64
+INFO: 2025/05/16 21:45:11 logger.go:51: Número de CPUs: 16
+INFO: 2025/05/16 21:45:13 logger.go:51: Parando Falcon Agent...
+INFO: 2025/05/16 21:45:47 logger.go:51: Informações da máquina:
+INFO: 2025/05/16 21:45:47 logger.go:51:   Sistema Operacional: linux
+INFO: 2025/05/16 21:45:47 logger.go:51:   Hostname: dev-pc
+INFO: 2025/05/16 21:45:47 logger.go:51:   Processador: AMD Ryzen 7 5700X3D 8-Core Processor
+INFO: 2025/05/16 21:45:47 logger.go:51:   Núcleos: 1
+INFO: 2025/05/16 21:45:47 logger.go:51:   Threads: 16
+INFO: 2025/05/16 21:45:47 logger.go:51:   BIOS: American Megatrends International, LLC. FC (06/08/2023)
+INFO: 2025/05/16 21:45:47 logger.go:51:   Serial Placa-mãe: unknown
+INFO: 2025/05/16 21:45:47 logger.go:51:   Serial da máquina: cbe0a352-a4ad-43f3-bca3-c8f4a13d9bbe
+INFO: 2025/05/16 21:45:47 logger.go:51:   Memórias:
+INFO: 2025/05/16 21:45:47 logger.go:51:   HDs:
+INFO: 2025/05/16 21:45:47 logger.go:51:     Modelo: Asgard AN2 500NVMe-M.2/80, Serial: 01911070186, Tamanho: 465 GB
+INFO: 2025/05/16 21:45:47 logger.go:51:     Modelo: Netac NVMe SSD 1TB, Serial: RN202211171TB793934, Tamanho: 931 GB
+INFO: 2025/05/16 21:45:47 logger.go:51:   Dispositivos USB: 0 (implementação futura)
+INFO: 2025/05/16 21:45:47 logger.go:51: Iniciando Falcon Agent na plataforma: linux
+INFO: 2025/05/16 21:45:52 logger.go:51: Coletando métricas do sistema...
+INFO: 2025/05/16 21:45:52 logger.go:51: Sistema Operacional: linux
+INFO: 2025/05/16 21:45:52 logger.go:51: Arquitetura: amd64
+INFO: 2025/05/16 21:45:52 logger.go:51: Número de CPUs: 16
+INFO: 2025/05/16 21:45:54 logger.go:51: Parando Falcon Agent...
+INFO: 2025/05/16 21:51:43 logger.go:51: Informações da máquina:
+INFO: 2025/05/16 21:51:43 logger.go:51:   Sistema Operacional: linux
+INFO: 2025/05/16 21:51:43 logger.go:51:   Hostname: dev-pc
+INFO: 2025/05/16 21:51:43 logger.go:51:   Processador: AMD Ryzen 7 5700X3D 8-Core Processor
+INFO: 2025/05/16 21:51:43 logger.go:51:   Núcleos: 1
+INFO: 2025/05/16 21:51:43 logger.go:51:   Threads: 16
+INFO: 2025/05/16 21:51:43 logger.go:51:   BIOS: American Megatrends International, LLC. FC (06/08/2023)
+INFO: 2025/05/16 21:51:43 logger.go:51:   Serial Placa-mãe: unknown
+INFO: 2025/05/16 21:51:43 logger.go:51:   Serial da máquina: cbe0a352-a4ad-43f3-bca3-c8f4a13d9bbe
+INFO: 2025/05/16 21:51:43 logger.go:51:   Memórias:
+INFO: 2025/05/16 21:51:43 logger.go:51:   HDs:
+INFO: 2025/05/16 21:51:43 logger.go:51:     Modelo: Asgard AN2 500NVMe-M.2/80, Serial: 01911070186, Tamanho: 465 GB
+INFO: 2025/05/16 21:51:43 logger.go:51:     Modelo: Netac NVMe SSD 1TB, Serial: RN202211171TB793934, Tamanho: 931 GB
+INFO: 2025/05/16 21:51:43 logger.go:51:   Dispositivos USB: 0 (implementação futura)
+INFO: 2025/05/16 21:51:43 logger.go:51: Iniciando Falcon Agent na plataforma: linux
+INFO: 2025/05/16 21:51:47 logger.go:51: Parando Falcon Agent...
+INFO: 2025/05/16 21:51:50 logger.go:51: Informações da máquina:
+INFO: 2025/05/16 21:51:50 logger.go:51:   Sistema Operacional: linux
+INFO: 2025/05/16 21:51:50 logger.go:51:   Hostname: dev-pc
+INFO: 2025/05/16 21:51:50 logger.go:51:   Processador: AMD Ryzen 7 5700X3D 8-Core Processor
+INFO: 2025/05/16 21:51:50 logger.go:51:   Núcleos: 1
+INFO: 2025/05/16 21:51:50 logger.go:51:   Threads: 16
+INFO: 2025/05/16 21:51:50 logger.go:51:   BIOS: American Megatrends International, LLC. FC (06/08/2023)
+INFO: 2025/05/16 21:51:50 logger.go:51:   Serial Placa-mãe: unknown
+INFO: 2025/05/16 21:51:50 logger.go:51:   Serial da máquina: cbe0a352-a4ad-43f3-bca3-c8f4a13d9bbe
+INFO: 2025/05/16 21:51:50 logger.go:51:   Memórias:
+INFO: 2025/05/16 21:51:50 logger.go:51:   HDs:
+INFO: 2025/05/16 21:51:50 logger.go:51:     Modelo: Asgard AN2 500NVMe-M.2/80, Serial: 01911070186, Tamanho: 465 GB
+INFO: 2025/05/16 21:51:50 logger.go:51:     Modelo: Netac NVMe SSD 1TB, Serial: RN202211171TB793934, Tamanho: 931 GB
+INFO: 2025/05/16 21:51:50 logger.go:51:   Dispositivos USB: 0 (implementação futura)
+INFO: 2025/05/16 21:51:50 logger.go:51: Iniciando Falcon Agent na plataforma: linux
+INFO: 2025/05/16 21:51:55 logger.go:51: Coletando métricas do sistema...
+INFO: 2025/05/16 21:51:55 logger.go:51: Sistema Operacional: linux
+INFO: 2025/05/16 21:51:55 logger.go:51: Arquitetura: amd64
+INFO: 2025/05/16 21:51:55 logger.go:51: Número de CPUs: 16
+INFO: 2025/05/16 21:51:57 logger.go:51: Parando Falcon Agent...
+INFO: 2025/05/16 21:52:36 logger.go:51: Informações da máquina:
+INFO: 2025/05/16 21:52:36 logger.go:51:   Sistema Operacional: linux
+INFO: 2025/05/16 21:52:36 logger.go:51:   Hostname: dev-pc
+INFO: 2025/05/16 21:52:36 logger.go:51:   Processador: AMD Ryzen 7 5700X3D 8-Core Processor
+INFO: 2025/05/16 21:52:36 logger.go:51:   Núcleos: 1
+INFO: 2025/05/16 21:52:36 logger.go:51:   Threads: 16
+INFO: 2025/05/16 21:52:36 logger.go:51:   BIOS: American Megatrends International, LLC. FC (06/08/2023)
+INFO: 2025/05/16 21:52:36 logger.go:51:   Serial Placa-mãe: unknown
+INFO: 2025/05/16 21:52:36 logger.go:51:   Serial da máquina: cbe0a352-a4ad-43f3-bca3-c8f4a13d9bbe
+INFO: 2025/05/16 21:52:36 logger.go:51:   Memórias:
+INFO: 2025/05/16 21:52:36 logger.go:51:     Capacidade: 32768 MB
+INFO: 2025/05/16 21:52:36 logger.go:51:   HDs:
+INFO: 2025/05/16 21:52:36 logger.go:51:     Modelo: Asgard AN2 500NVMe-M.2/80, Serial: 01911070186, Tamanho: 465 GB
+INFO: 2025/05/16 21:52:36 logger.go:51:     Modelo: Netac NVMe SSD 1TB, Serial: RN202211171TB793934, Tamanho: 931 GB
+INFO: 2025/05/16 21:52:36 logger.go:51:   Dispositivos USB: 0 (implementação futura)
+INFO: 2025/05/16 21:52:36 logger.go:51: Iniciando Falcon Agent na plataforma: linux
+INFO: 2025/05/16 21:52:41 logger.go:51: Coletando métricas do sistema...
+INFO: 2025/05/16 21:52:41 logger.go:51: Sistema Operacional: linux
+INFO: 2025/05/16 21:52:41 logger.go:51: Arquitetura: amd64
+INFO: 2025/05/16 21:52:41 logger.go:51: Número de CPUs: 16
+INFO: 2025/05/16 21:52:46 logger.go:51: Coletando métricas do sistema...
+INFO: 2025/05/16 21:52:46 logger.go:51: Sistema Operacional: linux
+INFO: 2025/05/16 21:52:46 logger.go:51: Arquitetura: amd64
+INFO: 2025/05/16 21:52:46 logger.go:51: Número de CPUs: 16
+INFO: 2025/05/16 21:52:51 logger.go:51: Coletando métricas do sistema...
+INFO: 2025/05/16 21:52:51 logger.go:51: Sistema Operacional: linux
+INFO: 2025/05/16 21:52:51 logger.go:51: Arquitetura: amd64
+INFO: 2025/05/16 21:52:51 logger.go:51: Número de CPUs: 16
+INFO: 2025/05/16 21:52:55 logger.go:51: Parando Falcon Agent...
+INFO: 2025/05/16 21:54:23 logger.go:51: Informações da máquina:
+INFO: 2025/05/16 21:54:23 logger.go:51:   Sistema Operacional: linux
+INFO: 2025/05/16 21:54:23 logger.go:51:   Hostname: dev-pc
+INFO: 2025/05/16 21:54:23 logger.go:51:   Processador: AMD Ryzen 7 5700X3D 8-Core Processor
+INFO: 2025/05/16 21:54:23 logger.go:51:   Núcleos: 1
+INFO: 2025/05/16 21:54:23 logger.go:51:   Threads: 16
+INFO: 2025/05/16 21:54:23 logger.go:51:   BIOS: American Megatrends International, LLC. FC (06/08/2023)
+INFO: 2025/05/16 21:54:23 logger.go:51:   Serial Placa-mãe: unknown
+INFO: 2025/05/16 21:54:23 logger.go:51:   Serial da máquina: cbe0a352-a4ad-43f3-bca3-c8f4a13d9bbe
+INFO: 2025/05/16 21:54:23 logger.go:51:   Memórias:
+INFO: 2025/05/16 21:54:23 logger.go:51:     Capacidade: 32768 MB
+INFO: 2025/05/16 21:54:23 logger.go:51:   HDs:
+INFO: 2025/05/16 21:54:23 logger.go:51:     Modelo: Asgard AN2 500NVMe-M.2/80, Serial: 01911070186, Tamanho: 465 GB
+INFO: 2025/05/16 21:54:23 logger.go:51:     Modelo: Netac NVMe SSD 1TB, Serial: RN202211171TB793934, Tamanho: 931 GB
+INFO: 2025/05/16 21:54:23 logger.go:51:   Dispositivos USB: 0 (implementação futura)
+INFO: 2025/05/16 21:54:23 logger.go:51: Iniciando Falcon Agent na plataforma: linux
+INFO: 2025/05/16 21:54:24 logger.go:51: Parando Falcon Agent...
+INFO: 2025/05/16 22:03:56 logger.go:51: Iniciando Falcon Agent...
