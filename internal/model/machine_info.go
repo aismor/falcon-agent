@@ -6,12 +6,11 @@ type MachineInfo struct {
 	Hostname      string
 	Processor     ProcessorInfo
 	BIOS          BIOSInfo
-	MotherboardSN string
-	SerialNumber  string
 	Memory        []MemoryInfo
 	HDs           []HDInfo
 	USBDevices    []USBDevice
-	Temperatures  []TemperatureInfo
+	MotherboardSN string
+	SerialNumber  string
 }
 
 // ProcessorInfo representa as informações do processador
@@ -50,10 +49,4 @@ type USBDevice struct {
 	ProductID string
 	Name      string
 	Serial    string
-}
-
-// TemperatureInfo representa as informações de temperatura
-type TemperatureInfo struct {
-	Sensor string
-	ValueC float64
 }

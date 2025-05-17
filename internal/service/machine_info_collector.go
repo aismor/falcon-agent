@@ -1,9 +1,12 @@
 package service
 
 import (
+	"fmt"
+	"log"
 	"os"
 	"runtime"
 
+	"github.com/google/gousb"
 	"github.com/jaypipes/ghw"
 	"github.com/shirou/gopsutil/v3/cpu"
 	"github.com/shirou/gopsutil/v3/host"
@@ -12,7 +15,9 @@ import (
 )
 
 func CollectMachineInfo() (*model.MachineInfo, error) {
-	info := &model.MachineInfo{}
+	info := &model.MachineInfo{
+		USBDevices: make([]model.USBDevice, 0),
+	}
 
 	// Sistema operacional
 	info.OS = runtime.GOOS
@@ -76,9 +81,6 @@ func CollectMachineInfo() (*model.MachineInfo, error) {
 		}
 	}
 
-	// Temperatura (nem sempre disponível)
-	// TODO: Implementar usando sensores específicos por SO
-
 	// BIOS
 	bios, err := ghw.BIOS()
 	if err == nil {
@@ -99,6 +101,49 @@ func CollectMachineInfo() (*model.MachineInfo, error) {
 	hostInfo, err := host.Info()
 	if err == nil {
 		info.SerialNumber = hostInfo.HostID
+	}
+
+	// Dispositivos USB
+	ctx := gousb.NewContext()
+	defer ctx.Close()
+
+	// Configura debug
+	ctx.Debug(3)
+
+	// Lista todos os dispositivos
+	devs, err := ctx.OpenDevices(func(desc *gousb.DeviceDesc) bool {
+		// Ignora hubs USB
+		if desc.Class == gousb.ClassHub {
+			return false
+		}
+		return true
+	})
+
+	if err != nil {
+		log.Printf("Erro ao listar dispositivos USB: %v", err)
+	}
+
+	for _, dev := range devs {
+		defer dev.Close()
+
+		// Tenta obter informações do dispositivo
+		var name string
+		manufacturer, _ := dev.Manufacturer()
+		product, _ := dev.Product()
+		serial, _ := dev.SerialNumber()
+
+		if manufacturer != "" && product != "" {
+			name = fmt.Sprintf("%s %s", manufacturer, product)
+		} else {
+			name = fmt.Sprintf("USB Device %04x:%04x", dev.Desc.Vendor, dev.Desc.Product)
+		}
+
+		info.USBDevices = append(info.USBDevices, model.USBDevice{
+			VendorID:  fmt.Sprintf("%04x", dev.Desc.Vendor),
+			ProductID: fmt.Sprintf("%04x", dev.Desc.Product),
+			Name:      name,
+			Serial:    serial,
+		})
 	}
 
 	return info, nil
