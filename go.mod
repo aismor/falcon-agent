@@ -6,6 +6,7 @@ toolchain go1.24.1
 
 require (
 	fyne.io/fyne/v2 v2.4.4
+	fyne.io/systray v1.10.1-0.20231115130155-104f5ef7839e
 	github.com/google/gousb v1.1.2
 	github.com/jaypipes/ghw v0.16.0
 	github.com/shirou/gopsutil/v3 v3.24.5
@@ -16,7 +17,6 @@ require (
 	codeberg.org/go-fonts/liberation v0.5.0 // indirect
 	codeberg.org/go-latex/latex v0.1.0 // indirect
 	codeberg.org/go-pdf/fpdf v0.10.0 // indirect
-	fyne.io/systray v1.10.1-0.20231115130155-104f5ef7839e // indirect
 	git.sr.ht/~sbinet/gg v0.6.0 // indirect
 	github.com/StackExchange/wmi v1.2.1 // indirect
 	github.com/ajstarks/svgo v0.0.0-20211024235047-1546f124cd8b // indirect

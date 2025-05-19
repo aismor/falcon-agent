@@ -12,6 +12,7 @@ import (
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
+	"fyne.io/systray"
 	"github.com/dev/falcon-agent/internal/model"
 	"github.com/dev/falcon-agent/internal/service"
 )
@@ -21,6 +22,7 @@ type App struct {
 	machineInfo *model.MachineInfo
 	updateChan  chan *model.MachineInfo
 	content     *fyne.Container
+	systemTray  fyne.App
 }
 
 func New(machineInfo *model.MachineInfo) *App {
@@ -29,6 +31,20 @@ func New(machineInfo *model.MachineInfo) *App {
 	window.Resize(fyne.NewSize(600, 400))
 	window.SetMaster()
 
+	// Configurar o comportamento de minimização
+	window.SetCloseIntercept(func() {
+		window.Hide()
+	})
+
+	// Configurar para não mostrar na barra de tarefas
+	window.SetIcon(theme.ComputerIcon())
+	window.CenterOnScreen()
+
+	// Configurar o comportamento da janela
+	window.SetOnClosed(func() {
+		window.Hide()
+	})
+
 	updateChan := make(chan *model.MachineInfo, 1)
 	updateChan <- machineInfo
 
@@ -36,12 +52,39 @@ func New(machineInfo *model.MachineInfo) *App {
 		window:      window,
 		machineInfo: machineInfo,
 		updateChan:  updateChan,
+		systemTray:  a,
 	}
 
 	app.setupUI()
+	go app.setupSystemTray()
 	go app.updateLoop()
 
 	return app
+}
+
+func (a *App) setupSystemTray() {
+	systray.Run(func() {
+		systray.SetIcon(theme.ComputerIcon().Content())
+		systray.SetTitle("Falcon Agent")
+		systray.SetTooltip("Falcon Agent")
+
+		mShow := systray.AddMenuItem("Mostrar", "Mostrar janela")
+		mQuit := systray.AddMenuItem("Sair", "Sair do aplicativo")
+
+		go func() {
+			for {
+				select {
+				case <-mShow.ClickedCh:
+					a.window.Show()
+					a.window.RequestFocus()
+				case <-mQuit.ClickedCh:
+					systray.Quit()
+					a.systemTray.Quit()
+					return
+				}
+			}
+		}()
+	}, nil)
 }
 
 func (a *App) Run() {
