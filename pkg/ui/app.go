@@ -2,6 +2,7 @@ package ui
 
 import (
 	"fmt"
+	"image/color"
 	"time"
 
 	"fyne.io/fyne/v2"
@@ -12,6 +13,7 @@ import (
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/dev/falcon-agent/internal/model"
+	"github.com/dev/falcon-agent/internal/service"
 )
 
 type App struct {
@@ -24,7 +26,7 @@ type App struct {
 func New(machineInfo *model.MachineInfo) *App {
 	a := app.New()
 	window := a.NewWindow("Falcon Agent")
-	window.Resize(fyne.NewSize(1024, 768))
+	window.Resize(fyne.NewSize(600, 400))
 	window.SetMaster()
 
 	updateChan := make(chan *model.MachineInfo, 1)
@@ -47,74 +49,86 @@ func (a *App) Run() {
 }
 
 func (a *App) setupUI() {
-	// Menu lateral
 	sidebar := a.createSidebar()
-
-	// Separador vertical
-	separator := canvas.NewLine(theme.ShadowColor())
-	separator.StrokeWidth = 2
-
-	// Conteúdo principal inicial (Sistema)
+	separator := canvas.NewRectangle(theme.ShadowColor())
+	separator.SetMinSize(fyne.NewSize(2, 0))
 	a.content = a.createSystemContent()
-
-	// Layout principal com split
 	split := container.NewHSplit(
 		container.NewHBox(sidebar, separator),
 		container.NewPadded(a.content),
 	)
-	split.SetOffset(0.2) // 20% para o menu lateral
-
+	split.SetOffset(0.2)
 	a.window.SetContent(split)
 }
 
+// Novo: Card moderno com fundo diferenciado
+func createModernCard(title string, content fyne.CanvasObject) fyne.CanvasObject {
+	bg := canvas.NewRectangle(color.NRGBA{R: 36, G: 37, B: 46, A: 255})
+	bg.SetMinSize(fyne.NewSize(340, 120))
+
+	titleLabel := widget.NewLabelWithStyle(title, fyne.TextAlignLeading, fyne.TextStyle{Bold: true})
+	titleLabel.TextStyle = fyne.TextStyle{Bold: true}
+
+	cardContent := container.NewVBox(
+		titleLabel,
+		widget.NewSeparator(),
+		content,
+	)
+
+	return container.NewMax(
+		bg,
+		container.NewPadded(cardContent),
+	)
+}
+
+// Novo: Botão moderno destacado
+func createModernButton(text string, icon fyne.Resource, tapped func()) fyne.CanvasObject {
+	btn := widget.NewButtonWithIcon(text, icon, tapped)
+	btn.Importance = widget.HighImportance
+	return container.NewPadded(btn)
+}
+
 func (a *App) createSidebar() *fyne.Container {
-	// Botões do menu com ícones
-	systemBtn := widget.NewButtonWithIcon("Sistema", theme.ComputerIcon(), func() {
-		a.content.Objects = []fyne.CanvasObject{a.createSystemContent()}
-		a.content.Refresh()
-	})
+	menuContainer := container.NewVBox()
+	menuContainer.Resize(fyne.NewSize(200, 0))
 
-	cpuBtn := widget.NewButtonWithIcon("CPU", theme.MediaPlayIcon(), func() {
-		a.content.Objects = []fyne.CanvasObject{a.createProcessorContent()}
-		a.content.Refresh()
-	})
-
-	memoryBtn := widget.NewButtonWithIcon("Memória", theme.StorageIcon(), func() {
-		a.content.Objects = []fyne.CanvasObject{a.createMemoryContent()}
-		a.content.Refresh()
-	})
-
-	storageBtn := widget.NewButtonWithIcon("Armazenamento", theme.FolderIcon(), func() {
-		a.content.Objects = []fyne.CanvasObject{a.createStorageContent()}
-		a.content.Refresh()
-	})
-
-	biosBtn := widget.NewButtonWithIcon("BIOS", theme.SettingsIcon(), func() {
-		a.content.Objects = []fyne.CanvasObject{a.createBIOSContent()}
-		a.content.Refresh()
-	})
-
-	usbBtn := widget.NewButtonWithIcon("USB", theme.MediaRecordIcon(), func() {
-		a.content.Objects = []fyne.CanvasObject{a.createUSBContent()}
-		a.content.Refresh()
-	})
-
-	// Estiliza os botões
-	for _, btn := range []*widget.Button{systemBtn, cpuBtn, memoryBtn, storageBtn, biosBtn, usbBtn} {
-		btn.Alignment = widget.ButtonAlignLeading
-		btn.Importance = widget.LowImportance
+	buttons := []struct {
+		icon   fyne.Resource
+		text   string
+		action func()
+	}{
+		{theme.ComputerIcon(), "Sistema", func() {
+			a.content.Objects = []fyne.CanvasObject{a.createSystemContent()}
+			a.content.Refresh()
+		}},
+		{theme.MediaPlayIcon(), "CPU", func() {
+			a.content.Objects = []fyne.CanvasObject{a.createProcessorContent()}
+			a.content.Refresh()
+		}},
+		{theme.StorageIcon(), "Memória", func() {
+			a.content.Objects = []fyne.CanvasObject{a.createMemoryContent()}
+			a.content.Refresh()
+		}},
+		{theme.FolderIcon(), "Armazenamento", func() {
+			a.content.Objects = []fyne.CanvasObject{a.createStorageContent()}
+			a.content.Refresh()
+		}},
+		{theme.SettingsIcon(), "BIOS", func() {
+			a.content.Objects = []fyne.CanvasObject{a.createBIOSContent()}
+			a.content.Refresh()
+		}},
+		{theme.MediaRecordIcon(), "USB", func() {
+			a.content.Objects = []fyne.CanvasObject{a.createUSBContent()}
+			a.content.Refresh()
+		}},
 	}
 
-	// Container do menu
-	return container.NewVBox(
-		systemBtn,
-		cpuBtn,
-		memoryBtn,
-		storageBtn,
-		biosBtn,
-		usbBtn,
-		layout.NewSpacer(),
-	)
+	for _, b := range buttons {
+		menuContainer.Add(createModernButton(b.text, b.icon, b.action))
+	}
+
+	menuContainer.Add(layout.NewSpacer())
+	return menuContainer
 }
 
 func (a *App) createSystemContent() *fyne.Container {
@@ -123,26 +137,14 @@ func (a *App) createSystemContent() *fyne.Container {
 		fyne.TextAlignCenter,
 		fyne.TextStyle{Bold: true},
 	)
-
-	titleContainer := container.NewVBox(
-		container.NewPadded(title),
-		widget.NewSeparator(),
+	grid := container.NewGridWithColumns(2,
+		createModernCard("Sistema Operacional", widget.NewLabel(a.machineInfo.OS)),
+		createModernCard("Hostname", widget.NewLabel(a.machineInfo.Hostname)),
+		createModernCard("Serial Number", widget.NewLabel(a.machineInfo.SerialNumber)),
 	)
-
-	info := container.NewVBox(
-		widget.NewLabelWithStyle("Sistema Operacional", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-		widget.NewLabel(a.machineInfo.OS),
-		widget.NewSeparator(),
-		widget.NewLabelWithStyle("Hostname", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-		widget.NewLabel(a.machineInfo.Hostname),
-		widget.NewSeparator(),
-		widget.NewLabelWithStyle("Serial Number", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-		widget.NewLabel(a.machineInfo.SerialNumber),
-	)
-
 	return container.NewVBox(
-		titleContainer,
-		container.NewPadded(info),
+		container.NewPadded(title),
+		container.NewPadded(grid),
 	)
 }
 
@@ -152,29 +154,15 @@ func (a *App) createProcessorContent() *fyne.Container {
 		fyne.TextAlignCenter,
 		fyne.TextStyle{Bold: true},
 	)
-
-	titleContainer := container.NewVBox(
-		container.NewPadded(title),
-		widget.NewSeparator(),
+	grid := container.NewGridWithColumns(2,
+		createModernCard("Modelo", widget.NewLabel(a.machineInfo.Processor.Model)),
+		createModernCard("Núcleos", widget.NewLabel(fmt.Sprintf("%d", a.machineInfo.Processor.Cores))),
+		createModernCard("Threads", widget.NewLabel(fmt.Sprintf("%d", a.machineInfo.Processor.Threads))),
+		createModernCard("Frequência", widget.NewLabel(fmt.Sprintf("%.2f GHz", a.machineInfo.Processor.FrequencyGHz))),
 	)
-
-	info := container.NewVBox(
-		widget.NewLabelWithStyle("Modelo", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-		widget.NewLabel(a.machineInfo.Processor.Model),
-		widget.NewSeparator(),
-		widget.NewLabelWithStyle("Núcleos", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-		widget.NewLabel(fmt.Sprintf("%d", a.machineInfo.Processor.Cores)),
-		widget.NewSeparator(),
-		widget.NewLabelWithStyle("Threads", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-		widget.NewLabel(fmt.Sprintf("%d", a.machineInfo.Processor.Threads)),
-		widget.NewSeparator(),
-		widget.NewLabelWithStyle("Frequência", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-		widget.NewLabel(fmt.Sprintf("%.2f GHz", a.machineInfo.Processor.FrequencyGHz)),
-	)
-
 	return container.NewVBox(
-		titleContainer,
-		container.NewPadded(info),
+		container.NewPadded(title),
+		container.NewPadded(grid),
 	)
 }
 
@@ -184,36 +172,20 @@ func (a *App) createMemoryContent() *fyne.Container {
 		fyne.TextAlignCenter,
 		fyne.TextStyle{Bold: true},
 	)
-
-	titleContainer := container.NewVBox(
-		container.NewPadded(title),
-		widget.NewSeparator(),
-	)
-
-	info := container.NewVBox()
+	content := container.NewVBox()
 	for _, mem := range a.machineInfo.Memory {
-		memBox := container.NewVBox(
-			widget.NewLabelWithStyle("Slot", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-			widget.NewLabel(mem.Slot),
-			widget.NewLabelWithStyle("Capacidade", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-			widget.NewLabel(fmt.Sprintf("%d MB", mem.SizeMB)),
-			widget.NewLabelWithStyle("Fabricante", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-			widget.NewLabel(mem.Manufacturer),
-		)
-		if mem.SerialNumber != "N/A" {
-			memBox.Add(widget.NewLabelWithStyle("Serial", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}))
-			memBox.Add(widget.NewLabel(mem.SerialNumber))
-		}
-		memBox.Add(widget.NewSeparator())
-		info.Add(memBox)
+		card := createModernCard("Slot "+mem.Slot, container.NewVBox(
+			widget.NewLabel(fmt.Sprintf("Capacidade: %d MB", mem.SizeMB)),
+			widget.NewLabel(fmt.Sprintf("Fabricante: %s", mem.Manufacturer)),
+			widget.NewLabel(fmt.Sprintf("Serial: %s", mem.SerialNumber)),
+		))
+		content.Add(card)
 	}
-
-	scroll := container.NewVScroll(container.NewPadded(info))
+	scroll := container.NewVScroll(content)
 	scroll.SetMinSize(fyne.NewSize(600, 400))
-
 	return container.NewVBox(
-		titleContainer,
-		scroll,
+		container.NewPadded(title),
+		container.NewPadded(scroll),
 	)
 }
 
@@ -223,34 +195,19 @@ func (a *App) createStorageContent() *fyne.Container {
 		fyne.TextAlignCenter,
 		fyne.TextStyle{Bold: true},
 	)
-
-	titleContainer := container.NewVBox(
-		container.NewPadded(title),
-		widget.NewSeparator(),
-	)
-
-	info := container.NewVBox()
+	content := container.NewVBox()
 	for _, hd := range a.machineInfo.HDs {
-		hdBox := container.NewVBox(
-			widget.NewLabelWithStyle("Modelo", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-			widget.NewLabel(hd.Model),
-			widget.NewLabelWithStyle("Capacidade", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-			widget.NewLabel(fmt.Sprintf("%d GB", hd.SizeGB)),
-		)
-		if hd.Serial != "" && hd.Serial != "unknown" {
-			hdBox.Add(widget.NewLabelWithStyle("Serial", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}))
-			hdBox.Add(widget.NewLabel(hd.Serial))
-		}
-		hdBox.Add(widget.NewSeparator())
-		info.Add(hdBox)
+		card := createModernCard(hd.Model, container.NewVBox(
+			widget.NewLabel(fmt.Sprintf("Capacidade: %d GB", hd.SizeGB)),
+			widget.NewLabel(fmt.Sprintf("Serial: %s", hd.Serial)),
+		))
+		content.Add(card)
 	}
-
-	scroll := container.NewVScroll(container.NewPadded(info))
+	scroll := container.NewVScroll(content)
 	scroll.SetMinSize(fyne.NewSize(600, 400))
-
 	return container.NewVBox(
-		titleContainer,
-		scroll,
+		container.NewPadded(title),
+		container.NewPadded(scroll),
 	)
 }
 
@@ -260,26 +217,14 @@ func (a *App) createBIOSContent() *fyne.Container {
 		fyne.TextAlignCenter,
 		fyne.TextStyle{Bold: true},
 	)
-
-	titleContainer := container.NewVBox(
-		container.NewPadded(title),
-		widget.NewSeparator(),
+	grid := container.NewGridWithColumns(2,
+		createModernCard("Fabricante", widget.NewLabel(a.machineInfo.BIOS.Vendor)),
+		createModernCard("Versão", widget.NewLabel(a.machineInfo.BIOS.Version)),
+		createModernCard("Data de Lançamento", widget.NewLabel(a.machineInfo.BIOS.ReleaseDate)),
 	)
-
-	info := container.NewVBox(
-		widget.NewLabelWithStyle("Fabricante", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-		widget.NewLabel(a.machineInfo.BIOS.Vendor),
-		widget.NewSeparator(),
-		widget.NewLabelWithStyle("Versão", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-		widget.NewLabel(a.machineInfo.BIOS.Version),
-		widget.NewSeparator(),
-		widget.NewLabelWithStyle("Data", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-		widget.NewLabel(a.machineInfo.BIOS.ReleaseDate),
-	)
-
 	return container.NewVBox(
-		titleContainer,
-		container.NewPadded(info),
+		container.NewPadded(title),
+		container.NewPadded(grid),
 	)
 }
 
@@ -289,52 +234,34 @@ func (a *App) createUSBContent() *fyne.Container {
 		fyne.TextAlignCenter,
 		fyne.TextStyle{Bold: true},
 	)
-
-	titleContainer := container.NewVBox(
-		container.NewPadded(title),
-		widget.NewSeparator(),
-	)
-
-	info := container.NewVBox()
-	if len(a.machineInfo.USBDevices) == 0 {
-		info.Add(widget.NewLabel("Nenhum dispositivo USB encontrado"))
-	} else {
-		for _, usb := range a.machineInfo.USBDevices {
-			usbBox := container.NewVBox(
-				widget.NewLabelWithStyle("Nome", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-				widget.NewLabel(usb.Name),
-				widget.NewLabelWithStyle("ID", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}),
-				widget.NewLabel(fmt.Sprintf("%s:%s", usb.VendorID, usb.ProductID)),
-			)
-			if usb.Serial != "" {
-				usbBox.Add(widget.NewLabelWithStyle("Serial", fyne.TextAlignLeading, fyne.TextStyle{Bold: true}))
-				usbBox.Add(widget.NewLabel(usb.Serial))
-			}
-			usbBox.Add(widget.NewSeparator())
-			info.Add(usbBox)
-		}
+	content := container.NewVBox()
+	for _, usb := range a.machineInfo.USBDevices {
+		card := createModernCard(usb.Name, container.NewVBox(
+			widget.NewLabel(fmt.Sprintf("Vendor ID: %s", usb.VendorID)),
+			widget.NewLabel(fmt.Sprintf("Product ID: %s", usb.ProductID)),
+			widget.NewLabel(fmt.Sprintf("Serial: %s", usb.Serial)),
+		))
+		content.Add(card)
 	}
-
-	scroll := container.NewVScroll(container.NewPadded(info))
+	scroll := container.NewVScroll(content)
 	scroll.SetMinSize(fyne.NewSize(600, 400))
-
 	return container.NewVBox(
-		titleContainer,
-		scroll,
+		container.NewPadded(title),
+		container.NewPadded(scroll),
 	)
 }
 
 func (a *App) updateLoop() {
 	ticker := time.NewTicker(5 * time.Second)
 	defer ticker.Stop()
-
 	for {
 		select {
-		case info := <-a.updateChan:
-			a.machineInfo = info
-			a.window.Canvas().Refresh(a.window.Content())
 		case <-ticker.C:
-			a.window.Canvas().Refresh(a.window.Content())
+			if newInfo, err := service.CollectMachineInfo(); err == nil {
+				a.updateChan <- newInfo
+				a.machineInfo = newInfo
+				a.content.Refresh()
+			}
 		}
 	}
 }
